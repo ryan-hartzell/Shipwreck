@@ -8,7 +8,7 @@ public class ShipController : MonoBehaviour {
 	//private float orientation = 0;
 	public float speed = 0.05f;
 	public float rotation_speed = 2.0f;
-	public float moves = 100.0f;
+	public float moves = 20.0f;
 
 	public GameObject mainCamera;
 	public Text moveText;
