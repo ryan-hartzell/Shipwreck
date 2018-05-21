@@ -26,8 +26,9 @@ public class BoardManager : MonoBehaviour
 	public int columns = 8;                                         //Number of columns in our game board.
 	public int rows = 8;                                            //Number of rows in our game board.
 	public Count waterCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
-	public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.                                     //Prefab to spawn for exit.
+	public Count islandCount = new Count (5, 5);                      //Lower and upper limit for our random number of food items per level.                                     //Prefab to spawn for exit.
 	public GameObject[] waterTiles;                                 //Array of floor prefabs.
+	public GameObject[] islandTiles;
 
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List<Vector3> gridPositions = new List<Vector3>(); //A list of possible locations to place tiles.
@@ -126,6 +127,6 @@ public class BoardManager : MonoBehaviour
 		InitialiseList ();
 
 		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (waterTiles, waterCount.minimum, waterCount.maximum);
+		LayoutObjectAtRandom (islandTiles, islandCount.minimum, islandCount.maximum);
 	}
 }
