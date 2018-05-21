@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class ShipController : MonoBehaviour {
 	//private Rigidbody2D rb;
 	//private float orientation = 0;
-	private float speed = 0.05f;
-	private float moves = 100.0f;
+	public float speed = 0.05f;
+	public float rotation_speed = 2.0f;
+	public float moves = 100.0f;
+
+	public GameObject mainCamera;
 	public Text moveText;
 
 	// Use this for initialization
@@ -32,14 +35,15 @@ public class ShipController : MonoBehaviour {
 		if (moves > 0) {
 			if (Input.GetKey (KeyCode.W)) {
 				transform.position += (transform.up * speed);
+				//mainCamera.transform.position += (mainCamera.transform.up * speed);
 				moves -= .05f;
 			}
 
 			if (Input.GetKey (KeyCode.A)) {
-				transform.Rotate (Vector3.forward);
+				transform.Rotate (rotation_speed * Vector3.forward);
 				moves -= .1f;
 			} else if (Input.GetKey (KeyCode.D)) {
-				transform.Rotate (Vector3.back);
+				transform.Rotate (rotation_speed * Vector3.back);
 				moves -= .1f;
 			}
 		}
