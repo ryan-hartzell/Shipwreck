@@ -458,8 +458,8 @@ GameObject:
   - component: {fileID: 1624702688}
   - component: {fileID: 1624702691}
   - component: {fileID: 1624702690}
-  - component: {fileID: 1624702689}
   - component: {fileID: 1624702692}
+  - component: {fileID: 1624702689}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -493,8 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
-  rotation_speed: 2
-  moves: 30
+  rotation_speed: 1.2
+  moveRange: 25
+  moveCost: 0.06
   mainCamera: {fileID: 1450710653}
   moveText: {fileID: 1573719050}
 --- !u!61 &1624702690

@@ -15,7 +15,7 @@ public class ShrinkingCircle : MonoBehaviour
 		size = (int)sizeValue;
 		size++;
 
-		radius = gameObject.GetComponent<ShipController> ().moves;
+		radius = gameObject.GetComponent<ShipController> ().moveRange;
 
 		lineRenderer = gameObject.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
@@ -30,7 +30,7 @@ public class ShrinkingCircle : MonoBehaviour
 		Vector3 pos;
 		float theta = 0f;
 
-		radius = gameObject.GetComponent<ShipController> ().moves;
+		radius = gameObject.GetComponent<ShipController> ().moveRange;
 
 		for (int i = 0; i < size; i++)
 		{
