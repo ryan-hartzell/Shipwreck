@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
-
 	public GameObject player;       //Public variable to store a reference to the player game object
-
+	public GameObject inactive;
+	public GameObject swap = null;
 
 	private Vector3 offset;         //Private variable to store the offset distance between the player and camera
 
@@ -20,5 +20,11 @@ public class CameraController : MonoBehaviour {
 	{
 		// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
 		transform.position = player.transform.position + offset;
+	}
+
+	void Swap(){
+		swap = player;
+		player = inactive;
+		inactive = swap;
 	}
 }
