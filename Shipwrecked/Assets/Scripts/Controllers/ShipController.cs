@@ -35,16 +35,15 @@ public class ShipController : MonoBehaviour {
 		if (moves > 0) {
 			if (Input.GetKey (KeyCode.W)) {
 				transform.position += (transform.up * speed);
-				//mainCamera.transform.position += (mainCamera.transform.up * speed);
 				moves -= .05f;
 			}
 
 			if (Input.GetKey (KeyCode.A)) {
 				transform.Rotate (rotation_speed * Vector3.forward);
-				moves -= .1f;
+				moves -= .05f;
 			} else if (Input.GetKey (KeyCode.D)) {
 				transform.Rotate (rotation_speed * Vector3.back);
-				moves -= .1f;
+				moves -= .05f;
 			}
 		}
 
