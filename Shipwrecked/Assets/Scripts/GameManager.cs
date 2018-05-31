@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour
 	}
 		
 	//Update is called every frame.
-	void FixedUpdate()
+	void Update()
 	{
-		if(Input.GetKey(KeyCode.B)){
+		if(Input.GetKeyDown(KeyCode.B)){
 			Character1.gameObject.SendMessage("Swap");
 			Character2.gameObject.SendMessage("Swap");
 			c.gameObject.SendMessage ("Swap");
