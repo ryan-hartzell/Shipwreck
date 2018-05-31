@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
 	private BoardManager boardScript;                       //Store a reference to our BoardManager which will set up the level.
-	public Transform Character1;
-	public Transform Character2;
-	public CameraController c;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -38,14 +35,12 @@ public class GameManager : MonoBehaviour
 		boardScript.SetupScene();
 
 	}
-		
+
+
+
 	//Update is called every frame.
-	void FixedUpdate()
+	void Update()
 	{
-		if(Input.GetKey(KeyCode.B)){
-			Character1.gameObject.SendMessage("Swap");
-			Character2.gameObject.SendMessage("Swap");
-			c.gameObject.SendMessage ("Swap");
-		}
+
 	}
 }
