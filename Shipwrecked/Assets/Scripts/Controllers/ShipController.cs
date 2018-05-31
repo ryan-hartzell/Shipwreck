@@ -26,28 +26,6 @@ public class ShipController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		/**
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
-
-		Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-		rb.AddForce(movement * speed);
-		*/
-
-<<<<<<< HEAD
-		if (moves > 0) {
-			if (Input.GetKey (KeyCode.W)) {
-				transform.position += (transform.up * speed);
-				moves -= .05f;
-			}
-
-			if (Input.GetKey (KeyCode.A)) {
-				transform.Rotate (rotation_speed * Vector3.forward);
-				moves -= .05f;
-			} else if (Input.GetKey (KeyCode.D)) {
-				transform.Rotate (rotation_speed * Vector3.back);
-				moves -= .05f;
-=======
 		if (inputEnabled == true) {
 			//transform.Translate (Vector3.up * 5 * Input.GetAxisRaw ("Horizontal") * Time.deltaTime);
 			//transform.Translate (Vector3.right * 5 * Input.GetAxisRaw ("Vertical") * Time.deltaTime);
@@ -66,7 +44,6 @@ public class ShipController : MonoBehaviour {
 					transform.Rotate (rotation_speed * Vector3.back);
 					moveRange -= moveCost;
 				}
->>>>>>> b8ee57870601bec594ede9745cfe5fbdad52b8f4
 			}
 
 			SetText ();
