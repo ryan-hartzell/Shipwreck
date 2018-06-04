@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
 	void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.B)){
-			Character1.gameObject.SendMessage("Swap");
-			Character2.gameObject.SendMessage("Swap");
-			c.gameObject.SendMessage ("Swap");
+            Character1.gameObject.SendMessage("ToggleMovement");
+            Character2.gameObject.SendMessage("ToggleMovement");
+            c.gameObject.SendMessage ("SwapPlayers");
 		}
 	}
 }

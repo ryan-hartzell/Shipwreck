@@ -54,11 +54,7 @@ public class ShipController : MonoBehaviour {
 		moveText.text = "Movement Remaining: " + moveRange.ToString();
 	}
 
-	void Swap(){
-		if (inputEnabled == true) {
-			inputEnabled = false;
-		} else {
-			inputEnabled = true;
-		}
+	void ToggleMovement(){
+        inputEnabled = !inputEnabled;
 	}
 }
