@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using System.Collections.Generic;
+
 public class CameraController : MonoBehaviour {
     public Camera mainCamera;
 	public GameObject player;       //Public variable to store a reference to the player game object
-	public GameObject inactive;
-	public GameObject swap = null;
+	//List<GameObject> ships = new List<GameObject>();
+	public GameObject[] ships;
+	public int active = 0;
     public bool freeMovement = false;
     public float speed = 0.06f;
 
@@ -62,8 +65,11 @@ public class CameraController : MonoBehaviour {
     }
 
 	void SwapPlayers(){
-		swap = player;
-		player = inactive;
-		inactive = swap;
+		if (active < ships.Length-1) {
+			active += 1;
+		} else {
+			active = 0;
+		}
+		player = ships [active];
 	}
 }
