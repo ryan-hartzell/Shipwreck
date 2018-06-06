@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
     public Camera mainCamera;
-	public GameObject player;       //Public variable to store a reference to the player game object
+	private GameObject player;       //Public variable to store a reference to the player game object
 	//List<GameObject> ships = new List<GameObject>();
-	public GameObject[] ships;
-	public int active = 0;
+	//public GameObject[] ships;
+	//public int active = 0;
     public bool freeMovement = false;
     public float speed = 0.06f;
 
@@ -18,8 +18,13 @@ public class CameraController : MonoBehaviour {
 	void Start () 
 	{
 		//Calculate and store the offset value by getting the distance between the player's position and camera's position.
+		//offset = transform.position - player.transform.position;
+		//player = GameManager.instance.players [0].ships [0].gameObject;
+	}
+
+	public void Initialize (int pl, int ship) {
+		ChangeShip (pl, ship);
 		offset = transform.position - player.transform.position;
-		player = GameManager.instance.players [0].ships [0].gameObject;
 	}
 
 	// LateUpdate is called after Update each frame
@@ -66,14 +71,16 @@ public class CameraController : MonoBehaviour {
         freeMovement = !freeMovement;
     }
 
+	/**
 	void SwapPlayers(){
 		if (active < ships.Length-1) {
 			active += 1;
 		} else {
 			active = 0;
 		}
-		//player = ships [active];
+		player = ships [active];
 	}
+	*/
 
 	public void ChangeShip(int pl, int ship) {
 		GameManager gm = GameManager.instance;

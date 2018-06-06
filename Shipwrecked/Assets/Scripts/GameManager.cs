@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 		if (!setup) {
 			setup = true;
 			players [0].ships [0].inputEnabled = true;
+			c.Initialize (0, 0);
 		}
 		if(Input.GetKeyDown(KeyCode.B)){
 			/**
