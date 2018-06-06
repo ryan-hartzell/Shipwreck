@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour {
 	{
 		//Calculate and store the offset value by getting the distance between the player's position and camera's position.
 		offset = transform.position - player.transform.position;
+		player = GameManager.instance.players [0].ships [0].gameObject;
 	}
 
 	// LateUpdate is called after Update each frame
@@ -43,11 +44,12 @@ public class CameraController : MonoBehaviour {
             {
                 transform.position += (transform.up * speed);
             } 
-            else if (Input.GetKey(KeyCode.S)) 
+            else if (Input.GetKey(KeyCode.S))
             {
                 transform.position -= (transform.up * speed);
             } 
-            else if (Input.GetKey(KeyCode.A)) 
+
+            if (Input.GetKey(KeyCode.A)) 
             {
                 transform.position -= (transform.right * speed);
             } 
@@ -70,6 +72,11 @@ public class CameraController : MonoBehaviour {
 		} else {
 			active = 0;
 		}
-		player = ships [active];
+		//player = ships [active];
+	}
+
+	public void ChangeShip(int pl, int ship) {
+		GameManager gm = GameManager.instance;
+		player = gm.players [pl].ships [ship].gameObject;
 	}
 }

@@ -8,7 +8,8 @@ public class ShipController : MonoBehaviour {
 	//private float orientation = 0;
 	public float speed = 0.06f;
 	public float rotation_speed = 1.2f;
-	public float moveRange = 25.0f;
+	public float moveRange;
+	public static float range = 25.0f;
 	public float moveCost = .04f;
 	public bool inputEnabled = false;
 
@@ -18,9 +19,10 @@ public class ShipController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//rb = GetComponent<Rigidbody2D>();
+		moveRange = range;
 	}
 
-	// Update is called once per frame
+	// Update is called once per frame	
 	void Update () {
 
 	}
@@ -46,7 +48,7 @@ public class ShipController : MonoBehaviour {
 				}
 			}
 
-			SetText ();
+			//SetText ();
 		}
 	}
 
@@ -56,5 +58,9 @@ public class ShipController : MonoBehaviour {
 
 	void ToggleMovement(){
         inputEnabled = !inputEnabled;
+	}
+
+	public void ResetRange() {
+		moveRange = range;
 	}
 }
