@@ -26,7 +26,7 @@ public class BoardManager : MonoBehaviour
 	public int columns = 8;                                         //Number of columns in our game board.
 	public int rows = 8;                                            //Number of rows in our game board.
 	public Count waterCount = new Count (5, 9);                      //Lower and upper limit for our random number of walls per level.
-	public Count islandCount = new Count (5, 5);                      //Lower and upper limit for our random number of food items per level.                                     //Prefab to spawn for exit.
+	public Count islandCount = new Count (5, 5);                      //Lower and upper limit for our random number of islands per level.
 	public GameObject[] waterTiles;                                 //Array of floor prefabs.
 	public GameObject[] islandTiles;
 
@@ -41,10 +41,10 @@ public class BoardManager : MonoBehaviour
 		gridPositions.Clear ();
 
 		//Loop through x axis (columns).
-		for(int x = 0; x < columns-1; x++)
+		for(int x = 1; x < columns-2; x += 2)
 		{
 			//Within each column, loop through y axis (rows).
-			for(int y = 0; y < rows-1; y++)
+			for(int y = 1; y < rows-2; y += 2)
 			{
 				//At each index add a new Vector3 to our list with the x and y coordinates of that position.
 				gridPositions.Add (new Vector3(x, y, 0f));

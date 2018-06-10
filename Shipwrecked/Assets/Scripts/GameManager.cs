@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	//List<Transform> ships = new List<Transform>();
 	//public Transform[] ships;
 	public int numPlayers;
+	public GameObject player;
 	public List<Player> players;
 	public GameObject[] shipTypes;
 	public int activeShip = 0;
@@ -42,9 +43,12 @@ public class GameManager : MonoBehaviour
 	{
 		//Call the SetupScene function of the BoardManager script, pass it current level number.
 		boardScript.SetupScene();
-
+		for (int i = 0; i < numPlayers; i++) {
+			GameObject temp = Instantiate (player, new Vector3 (0, 0, 0), Quaternion.identity);
+			players.Add (temp.GetComponent<Player>());
+		}
 	}
-		
+
 	//Update is called every frame.
 	void Update()
 	{
@@ -53,7 +57,7 @@ public class GameManager : MonoBehaviour
 			players [0].ships [0].inputEnabled = true;
 			c.Initialize (0, 0);
 		}
-		if(Input.GetKeyDown(KeyCode.B)){
+		if(Input.GetKeyDown(KeyCode.B) && c.freeMovement == false){
 			/**
 			ships[active].gameObject.SendMessage("ToggleMovement");
 			if (active < ships.Length-1) {
@@ -72,7 +76,7 @@ public class GameManager : MonoBehaviour
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
-		else if (Input.GetKeyDown (KeyCode.T)) {
+		else if (Input.GetKeyDown (KeyCode.T) && c.freeMovement == false) {
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			players [activePlayer].EndTurn ();
 			activePlayer = (activePlayer + 1) % players.Count;

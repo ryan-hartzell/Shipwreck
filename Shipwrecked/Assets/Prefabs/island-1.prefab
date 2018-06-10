@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4286996047423964}
   - component: {fileID: 212944412192088118}
-  - component: {fileID: 58306384425691638}
+  - component: {fileID: 60728452387659882}
   m_Layer: 0
   m_Name: island-1
   m_TagString: Untagged
@@ -41,8 +41,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58306384425691638
-CircleCollider2D:
+--- !u!60 &60728452387659882
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,80 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 4, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.48, y: -1.12}
+      - {x: 1.51, y: -0.87}
+      - {x: 1.5999999, y: -0.74}
+      - {x: 1.74, y: -0.56}
+      - {x: 1.76, y: -0.52}
+      - {x: 1.76, y: -0.39}
+      - {x: 1.73, y: -0.29999998}
+      - {x: 1.43, y: -0.07}
+      - {x: 1.41, y: 0.08}
+      - {x: 1.4499999, y: 0.14999999}
+      - {x: 1.4699999, y: 0.29}
+      - {x: 1.4599999, y: 0.32999998}
+      - {x: 1.36, y: 0.47}
+      - {x: 1.24, y: 0.55}
+      - {x: 1.0699999, y: 0.84999996}
+      - {x: 0.90999997, y: 1}
+      - {x: 0.82, y: 1.05}
+      - {x: 0.56, y: 1.0799999}
+      - {x: 0.38, y: 1.06}
+      - {x: 0.29, y: 1.2099999}
+      - {x: 0.37, y: 1.27}
+      - {x: 0.39, y: 1.48}
+      - {x: 0.21, y: 1.67}
+      - {x: 0.01, y: 1.74}
+      - {x: -0.03, y: 1.75}
+      - {x: -0.39, y: 1.75}
+      - {x: -0.55, y: 1.6899999}
+      - {x: -0.82, y: 1.56}
+      - {x: -0.84999996, y: 1.5899999}
+      - {x: -0.94, y: 1.62}
+      - {x: -1.04, y: 1.61}
+      - {x: -1.0699999, y: 1.5999999}
+      - {x: -1.15, y: 1.5799999}
+      - {x: -1.25, y: 1.54}
+      - {x: -1.42, y: 1.4599999}
+      - {x: -1.5699999, y: 1.3}
+      - {x: -1.79, y: 0.77}
+      - {x: -1.79, y: 0.57}
+      - {x: -1.6899999, y: 0.34}
+      - {x: -1.63, y: 0.31}
+      - {x: -1.68, y: 0.19999999}
+      - {x: -1.5799999, y: 0.04}
+      - {x: -1.49, y: 0.02}
+      - {x: -1.5, y: -0.08}
+      - {x: -1.3399999, y: -0.26}
+      - {x: -0.84, y: -0.5}
+      - {x: -0.71, y: -0.59999996}
+      - {x: -0.64, y: -0.75}
+      - {x: -0.59, y: -0.84}
+      - {x: -0.48, y: -0.95}
+      - {x: -0.39999998, y: -1}
+      - {x: -0.29, y: -1.03}
+      - {x: -0.11, y: -1.23}
+      - {x: 0.08, y: -1.26}
+      - {x: 0.13, y: -1.24}
+      - {x: 0.26, y: -1.2099999}
+      - {x: 0.51, y: -1.39}
+      - {x: 0.62, y: -1.4399999}
+      - {x: 0.85999995, y: -1.4399999}
+      - {x: 0.96, y: -1.43}
+      - {x: 1.1, y: -1.4}
+      - {x: 1.3199999, y: -1.3199999}
+      - {x: 1.42, y: -1.24}
 --- !u!212 &212944412192088118
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -69,6 +141,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

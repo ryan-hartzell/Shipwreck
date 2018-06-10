@@ -324,12 +324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3405be279e34dd9a90871868ea0591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPlayers: 1
-  players:
-  - {fileID: 984655068}
-  - {fileID: 1355443415}
+  numPlayers: 2
+  player: {fileID: 1247651046679010, guid: b2d13b513b8251d44896117adb86f1bf, type: 2}
+  players: []
   shipTypes:
-  - {fileID: 1632766984067736, guid: 2d751f5982cc3b7468351362b5cd8736, type: 2}
+  - {fileID: 1932223008849858, guid: c38ec0e87a3417f4b9a01ee37f3331ab, type: 2}
   activeShip: 0
   activePlayer: 0
   c: {fileID: 17082307}
@@ -391,23 +390,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1247651046679010, guid: b2d13b513b8251d44896117adb86f1bf, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2d13b513b8251d44896117adb86f1bf, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &984655068 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114504851542971904, guid: b2d13b513b8251d44896117adb86f1bf,
-    type: 2}
-  m_PrefabInternal: {fileID: 1926560763}
-  m_Script: {fileID: 11500000, guid: 503fe428a2f335d4487582e32c5264e2, type: 3}
---- !u!114 &1355443415 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114504851542971904, guid: b2d13b513b8251d44896117adb86f1bf,
-    type: 2}
-  m_PrefabInternal: {fileID: 851100368}
-  m_Script: {fileID: 11500000, guid: 503fe428a2f335d4487582e32c5264e2, type: 3}
 --- !u!1 &1459913157
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +510,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1247651046679010, guid: b2d13b513b8251d44896117adb86f1bf, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2d13b513b8251d44896117adb86f1bf, type: 2}
