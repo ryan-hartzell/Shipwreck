@@ -52,35 +52,33 @@ public class GameManager : MonoBehaviour
 	//Update is called every frame.
 	void Update()
 	{
+		ShipController activeShipCtrl = players[activePlayer].ships[activeShip];
+		
 		if (!setup) {
 			setup = true;
 			players [0].ships [0].inputEnabled = true;
 			c.Initialize (0, 0);
 		}
+
+		if (Input.GetKeyDown(KeyCode.O)) {
+			ShrinkingCircle shipCircle = activeShipCtrl.GetComponent<ShrinkingCircle>();
+			shipCircle.toggleVisibility();
+		}
 		if(Input.GetKeyDown(KeyCode.B) && c.freeMovement == false){
-			/**
-			ships[active].gameObject.SendMessage("ToggleMovement");
-			if (active < ships.Length-1) {
-				active += 1;
-			} else {
-				active = 0;
-			}
-			ships[active].gameObject.SendMessage("ToggleMovement");
-            c.gameObject.SendMessage("SwapPlayers");
-            */
-			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
+
 			if (activeShip < players [activePlayer].ships.Count - 1)
 				activeShip += 1;
 			else
 				activeShip = 0;
-			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 		else if (Input.GetKeyDown (KeyCode.T) && c.freeMovement == false) {
-			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
 			players [activePlayer].EndTurn ();
 			activePlayer = (activePlayer + 1) % players.Count;
-			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 	}

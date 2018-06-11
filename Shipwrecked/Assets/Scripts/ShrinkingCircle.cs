@@ -23,6 +23,11 @@ public class ShrinkingCircle : MonoBehaviour
 		lineRenderer.endWidth = 0.1f;
 		lineRenderer.positionCount = size;
 		lineRenderer.sortingLayerName = "Foreground";
+		lineRenderer.enabled = false;
+	}
+
+	public void toggleVisibility() {
+		lineRenderer.enabled = !lineRenderer.enabled;
 	}
 
 	void Update()
@@ -30,7 +35,7 @@ public class ShrinkingCircle : MonoBehaviour
 		Vector3 pos;
 		float theta = 0f;
 
-		radius = gameObject.GetComponent<ShipController> ().moveRange;
+		radius = gameObject.GetComponent<ShipController>().moveRange;
 
 		for (int i = 0; i < size; i++)
 		{
@@ -42,5 +47,6 @@ public class ShrinkingCircle : MonoBehaviour
 			pos = new Vector3(x, y, 0);
 			lineRenderer.SetPosition(i, pos);
 		}
-	}
+
+	}	
 }
