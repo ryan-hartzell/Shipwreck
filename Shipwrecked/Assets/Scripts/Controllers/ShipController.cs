@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ShipController : MonoBehaviour {
 	//private Rigidbody2D rb;
 	//private float orientation = 0;
-	public float speed = 0.06f;
-	public float rotation_speed = 1.2f;
+	public float speed;
+	public float rotation_speed;
 	public float moveRange;
-	public static float range = 25.0f;
-	public float moveCost = .04f;
+	public float range;
+	public float moveCost;
 	public int health = 100;
 	public int attackDamage = 100;
 	public bool inputEnabled = false;
@@ -128,6 +128,11 @@ public class ShipController : MonoBehaviour {
 	void DisableOverlays() {
 		overlayEnabled = false;
 		gameObject.GetComponent<ShrinkingCircle>().disableVisibility();
+	}
+
+	void EnableOverlays() {
+		overlayEnabled = true;
+		gameObject.GetComponent<ShrinkingCircle> ().enableVisibility ();
 	}
 
 	public void EndTurn() {

@@ -322,10 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba7a0c2319bb72428572dc673c05535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.03
+  speed: 0.08
   rotation_speed: 1
-  moveRange: 20
-  moveCost: 0.03
+  moveRange: 0
+  range: 25
+  moveCost: 0.08
   health: 100
   attackDamage: 50
   inputEnabled: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   hasAttackedThisTurn: 0
   targetShip: {fileID: 0}
   playerId: -1
+  shipsDestroyed: 0
   mainCamera: {fileID: 0}
 --- !u!212 &212593345819438466
 SpriteRenderer:

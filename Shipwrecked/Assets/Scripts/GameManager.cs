@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
 			setup = true;
 			players[0].ships[0].inputEnabled = true;
 			c.Initialize(0, 0);
+			players[activePlayer].ships[activeShip].gameObject.SendMessage("EnableOverlays");
 		}
 
 		ShipController activeShipCtrl = players[activePlayer].ships[activeShip];
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
 				activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
 			} while (!players [activePlayer].ships [activeShip].gameObject.activeInHierarchy);
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			players[activePlayer].ships[activeShip].gameObject.SendMessage("EnableOverlays");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 		else if (Input.GetKeyDown (KeyCode.T) && c.freeMovement == false) {
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
 				activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
 			}
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			players[activePlayer].ships[activeShip].gameObject.SendMessage("EnableOverlays");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 
