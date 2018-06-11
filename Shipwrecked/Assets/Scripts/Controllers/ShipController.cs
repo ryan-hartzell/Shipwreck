@@ -63,6 +63,11 @@ public class ShipController : MonoBehaviour {
 		gameObject.GetComponent<ShrinkingCircle>().toggleVisibility();
 	}
 
+	void DisableOverlays() {
+		overlayEnabled = false;
+		gameObject.GetComponent<ShrinkingCircle>().toggleVisibility();
+	}
+
 	public void ResetRange() {
 		moveRange = range;
 	}

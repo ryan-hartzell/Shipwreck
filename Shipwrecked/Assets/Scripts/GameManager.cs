@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.B) && c.freeMovement == false){
 			
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			players[activePlayer].ships[activeShip].gameObject.SendMessage("DisableOverlays");
 			if (activeShip < players [activePlayer].ships.Count - 1)
 				activeShip += 1;
 			else
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown (KeyCode.T) && c.freeMovement == false) {
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
+			players[activePlayer].ships[activeShip].gameObject.SendMessage("DisableOverlays");
 			players [activePlayer].EndTurn ();
 			activePlayer = (activePlayer + 1) % players.Count;
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
