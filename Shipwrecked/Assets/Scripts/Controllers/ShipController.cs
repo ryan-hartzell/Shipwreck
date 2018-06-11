@@ -48,6 +48,9 @@ public class ShipController : MonoBehaviour {
 					moveRange -= moveCost;
 				}
 			}
+			if (moveRange < 0) {
+				moveRange = 0;
+			}
 		}
 
 		gameObject.transform.Find("CombatOverlay").GetComponent<Canvas>().enabled = overlayEnabled;

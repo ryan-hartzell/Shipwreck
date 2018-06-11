@@ -29,6 +29,7 @@ public class BoardManager : MonoBehaviour
 	public Count islandCount = new Count (5, 5);                      //Lower and upper limit for our random number of islands per level.
 	public GameObject[] waterTiles;                                 //Array of floor prefabs.
 	public GameObject[] islandTiles;
+	public GameObject edgeTile;
 
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List<Vector3> gridPositions = new List<Vector3>(); //A list of possible locations to place tiles.
@@ -60,19 +61,20 @@ public class BoardManager : MonoBehaviour
 		boardHolder = new GameObject ("Board").transform;
 
 		//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
-		for(int x = 0; x < columns; x++)
+		for(int x = -1; x < columns + 1; x++)
 		{
 			//Loop along y axis, starting from -1 to place floor or outerwall tiles.
-			for(int y = 0; y < rows; y++)
+			for(int y = -1; y < rows + 1; y++)
 			{
-				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
-				GameObject toInstantiate = waterTiles[Random.Range (0, waterTiles.Length)];
+				GameObject toInstantiate;
+				if (x == -1 || y == -1 || x == columns || y == rows) {
+					toInstantiate = edgeTile;
+				} else {
+					//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
+					toInstantiate = waterTiles [Random.Range (0, waterTiles.Length)];
+				}
 
-				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-				GameObject instance =
-					Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
-
-				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
+				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
 			}
 		}
@@ -83,7 +85,7 @@ public class BoardManager : MonoBehaviour
 	Vector3 RandomPosition ()
 	{
 		//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
-		int randomIndex = Random.Range (0, gridPositions.Count);
+		int randomIndex = Random.Range (1, gridPositions.Count - 1);
 
 		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
 		Vector3 randomPosition = gridPositions[randomIndex];

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 	public int activePlayer = 0;
 	public CameraController c;
 	private bool setup = false;
-	public Text moveText;
+	public Text moveText, playerText;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -44,16 +44,19 @@ public class GameManager : MonoBehaviour
 	{
 		//Call the SetupScene function of the BoardManager script, pass it current level number.
 		boardScript.SetupScene();
+		float x = (float)boardScript.columns - 1;
+		float y = (float)boardScript.rows - 1;
+		Vector3[] positions = { new Vector3 (0, 0, 0), new Vector3 (x, y, 0), new Vector3 (0, y, 0), new Vector3 (x, 0, 0) };
 		for (int i = 0; i < numPlayers; i++) {
-			GameObject temp = Instantiate (player, new Vector3 (0, 0, 0), Quaternion.identity);
-			players.Add (temp.GetComponent<Player>());
+			GameObject temp = Instantiate (player, positions[i], Quaternion.identity);
+			Player newPlayer = temp.GetComponent<Player> ();
+			players.Add (newPlayer);
 		}
 	}
 
 	//Update is called every frame.
 	void Update()
 	{
-		ShipController activeShipCtrl = players[activePlayer].ships[activeShip];
 
 		if (!setup)
 		{
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
 			players[0].ships[0].inputEnabled = true;
 			c.Initialize(0, 0);
 		}
+
+		ShipController activeShipCtrl = players[activePlayer].ships[activeShip];
 
 		if (Input.GetKeyDown(KeyCode.O))
 		{
@@ -71,10 +76,7 @@ public class GameManager : MonoBehaviour
 			
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			players[activePlayer].ships[activeShip].gameObject.SendMessage("DisableOverlays");
-			if (activeShip < players [activePlayer].ships.Count - 1)
-				activeShip += 1;
-			else
-				activeShip = 0;
+			activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
@@ -87,6 +89,10 @@ public class GameManager : MonoBehaviour
 			c.ChangeShip (activePlayer, activeShip);
 		}
 
+		playerText.text = "Player " + (activePlayer + 1) +
+		"\n\tMoney: " + players [activePlayer].money +
+		"\n\tPoints: " + players [activePlayer].points +
+		"\n\tShips: " + players [activePlayer].ships.Count;
 		moveText.text = "Movement Left: " + activeShipCtrl.moveRange.ToString();
 	}
 }
