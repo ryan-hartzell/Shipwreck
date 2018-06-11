@@ -58,8 +58,8 @@ public class Player : MonoBehaviour {
 
 	public void EndTurn() {
 		foreach (ShipController ship in ships) {
-			ship.ResetRange ();
-			ship.hasAttackedThisTurn = false;
+			points += ship.shipsDestroyed * 50;
+			ship.EndTurn ();
 		}
 	}
 }

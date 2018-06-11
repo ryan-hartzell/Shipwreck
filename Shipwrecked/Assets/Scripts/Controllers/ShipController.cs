@@ -18,6 +18,7 @@ public class ShipController : MonoBehaviour {
 	public bool hasAttackedThisTurn = false;
 	public ShipController targetShip;
 	public int playerId;
+	public int shipsDestroyed = 0;
 
 	public GameObject mainCamera;
 
@@ -70,6 +71,9 @@ public class ShipController : MonoBehaviour {
 			defender.health = defender.health - attacker.attackDamage;
 			hasAttackedThisTurn = true;
 			print(defender.health);
+			if (targetShip.health <= 0) {
+				shipsDestroyed++;
+			}
 		}
 		else {
 			print("Attack cannot happen");
@@ -105,6 +109,9 @@ public class ShipController : MonoBehaviour {
 			}
 		}
 
+		if (health <= 0)
+			gameObject.SetActive (false);
+
 		gameObject.transform.Find("CombatOverlay").GetComponent<Canvas>().enabled = overlayEnabled;
 	}
 
@@ -123,7 +130,9 @@ public class ShipController : MonoBehaviour {
 		gameObject.GetComponent<ShrinkingCircle>().disableVisibility();
 	}
 
-	public void ResetRange() {
+	public void EndTurn() {
 		moveRange = range;
+		hasAttackedThisTurn = false;
+		shipsDestroyed = 0;
 	}
 }

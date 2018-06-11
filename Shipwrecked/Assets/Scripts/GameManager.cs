@@ -78,7 +78,9 @@ public class GameManager : MonoBehaviour
 			
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			players[activePlayer].ships[activeShip].gameObject.SendMessage("DisableOverlays");
-			activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
+			do {
+				activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
+			} while (!players [activePlayer].ships [activeShip].gameObject.activeInHierarchy);
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
@@ -87,15 +89,17 @@ public class GameManager : MonoBehaviour
 			players[activePlayer].ships[activeShip].gameObject.SendMessage("DisableOverlays");
 			players [activePlayer].EndTurn ();
 			activePlayer = (activePlayer + 1) % players.Count;
+			while (!players [activePlayer].ships [activeShip].gameObject.activeInHierarchy) {
+				activeShip = (activeShip + 1) % players [activePlayer].ships.Count;
+			}
 			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 
 		playerText.text = "Player " + (activePlayer + 1) +
-		"\n\tMoney: " + players[activePlayer].money +
-		"\n\tPoints: " + players[activePlayer].points +
-			"\n\tCurrent Ship Health: " + players[activePlayer].ships[activeShip].health +
-		"\n\tShips: " + players [activePlayer].ships.Count;
+		"\n\tMoney: " + players [activePlayer].money +
+		"\n\tPoints: " + players [activePlayer].points +
+		"\n\tCurrent Ship Health: " + players [activePlayer].ships [activeShip].health;
 		moveText.text = "Movement Left: " + activeShipCtrl.moveRange.ToString();
 	}
 }
