@@ -12,9 +12,10 @@ public class ShipController : MonoBehaviour {
 	public static float range = 25.0f;
 	public float moveCost = .04f;
 	public bool inputEnabled = false;
+	public bool overlayEnabled = false;
 
 	public GameObject mainCamera;
-	public Text moveText;
+
 
 	// Use this for initialization
 	void Start () {
@@ -47,17 +48,19 @@ public class ShipController : MonoBehaviour {
 					moveRange -= moveCost;
 				}
 			}
-
-			//SetText ();
 		}
+
+		gameObject.transform.Find("CombatOverlay").GetComponent<Canvas>().enabled = overlayEnabled;
 	}
 
-	void SetText() {
-		moveText.text = "Movement Remaining: " + moveRange.ToString();
-	}
 
 	void ToggleMovement(){
         inputEnabled = !inputEnabled;
+	}
+
+	void ToggleOverlays() {
+		overlayEnabled = !overlayEnabled;
+		gameObject.GetComponent<ShrinkingCircle>().toggleVisibility();
 	}
 
 	public void ResetRange() {

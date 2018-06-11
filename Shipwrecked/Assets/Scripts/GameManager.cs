@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 using System.Collections.Generic;       //Allows us to use Lists. 
 
 public class GameManager : MonoBehaviour
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public int activePlayer = 0;
 	public CameraController c;
 	private bool setup = false;
+	public Text moveText;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -53,33 +54,37 @@ public class GameManager : MonoBehaviour
 	void Update()
 	{
 		ShipController activeShipCtrl = players[activePlayer].ships[activeShip];
-		
-		if (!setup) {
+
+		if (!setup)
+		{
 			setup = true;
-			players [0].ships [0].inputEnabled = true;
-			c.Initialize (0, 0);
+			players[0].ships[0].inputEnabled = true;
+			c.Initialize(0, 0);
 		}
 
-		if (Input.GetKeyDown(KeyCode.O)) {
-			ShrinkingCircle shipCircle = activeShipCtrl.GetComponent<ShrinkingCircle>();
-			shipCircle.toggleVisibility();
+		if (Input.GetKeyDown(KeyCode.O))
+		{
+			activeShipCtrl.gameObject.SendMessage("ToggleOverlays");
 		}
+
 		if(Input.GetKeyDown(KeyCode.B) && c.freeMovement == false){
-			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
-
+			
+			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			if (activeShip < players [activePlayer].ships.Count - 1)
 				activeShip += 1;
 			else
 				activeShip = 0;
-			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
+			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
 		else if (Input.GetKeyDown (KeyCode.T) && c.freeMovement == false) {
-			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
+			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			players [activePlayer].EndTurn ();
 			activePlayer = (activePlayer + 1) % players.Count;
-			activeShipCtrl.gameObject.SendMessage ("ToggleMovement");
+			players [activePlayer].ships [activeShip].gameObject.SendMessage ("ToggleMovement");
 			c.ChangeShip (activePlayer, activeShip);
 		}
+
+		moveText.text = "Movement Left: " + activeShipCtrl.moveRange.ToString();
 	}
 }
