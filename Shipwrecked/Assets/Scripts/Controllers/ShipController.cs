@@ -68,7 +68,6 @@ public class ShipController : MonoBehaviour {
 		
 		if (attacker.playerId != defender.playerId && !hasAttackedThisTurn && targetShip != null) {
 			defender.health = defender.health - attacker.attackDamage;
-			targetShip = null;
 			hasAttackedThisTurn = true;
 			print(defender.health);
 		}
