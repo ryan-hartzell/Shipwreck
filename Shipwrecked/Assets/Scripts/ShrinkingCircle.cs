@@ -30,6 +30,11 @@ public class ShrinkingCircle : MonoBehaviour
 		lineRenderer.enabled = !lineRenderer.enabled;
 	}
 
+	public void disableVisibility()
+	{
+		lineRenderer.enabled = false;
+	}
+
 	void Update()
 	{
 		Vector3 pos;

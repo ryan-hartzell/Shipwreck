@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224940646700501096}
   - component: {fileID: 222110529760251766}
   - component: {fileID: 114759178404504676}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RightCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,8 @@ GameObject:
   - component: {fileID: 114330862917042348}
   - component: {fileID: 50241566951132806}
   - component: {fileID: 60322028658083494}
-  m_Layer: 0
+  - component: {fileID: 61947229182749024}
+  m_Layer: 8
   m_Name: Frigate Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4286959597915238}
   - component: {fileID: 212598126779362054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: frigate
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -73,7 +74,7 @@ GameObject:
   - component: {fileID: 224157739981959250}
   - component: {fileID: 222771407497185412}
   - component: {fileID: 114475290049837694}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LeftCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 223239988046905992}
   - component: {fileID: 114298334822210776}
   - component: {fileID: 114002300843621498}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CombatOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1281197804649060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224964732993563304}
@@ -155,7 +156,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -170,13 +171,37 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.6006215}
-      - {x: -0.3783622, y: 0.6463541}
-      - {x: -0.3076905, y: -0.8001965}
-      - {x: -0.15057175, y: -1.7599993}
-      - {x: 0.17682818, y: -1.7740866}
-      - {x: 0.34149596, y: -0.70486885}
-      - {x: 0.40486735, y: 0.53146327}
+    - - {x: 0, y: 1.2904534}
+      - {x: -6.69, y: 5.31}
+      - {x: -6.69, y: -5.31}
+      - {x: 0.0112166405, y: -1.2327424}
+      - {x: 6.6899977, y: -5.3100004}
+      - {x: 6.69, y: 5.31}
+--- !u!61 &61947229182749024
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281197804649060}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.5}
+  m_EdgeRadius: 0
 --- !u!114 &114002300843621498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,8 +233,13 @@ MonoBehaviour:
   rotation_speed: 1
   moveRange: 20
   moveCost: 0.03
+  health: 100
+  attackDamage: 50
   inputEnabled: 0
   overlayEnabled: 0
+  hasAttackedThisTurn: 0
+  targetShip: {fileID: 0}
+  playerId: -1
   mainCamera: {fileID: 0}
 --- !u!114 &114298334822210776
 MonoBehaviour:

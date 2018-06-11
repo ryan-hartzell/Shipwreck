@@ -11,8 +11,13 @@ public class ShipController : MonoBehaviour {
 	public float moveRange;
 	public static float range = 25.0f;
 	public float moveCost = .04f;
+	public int health = 100;
+	public int attackDamage = 100;
 	public bool inputEnabled = false;
 	public bool overlayEnabled = false;
+	public bool hasAttackedThisTurn = false;
+	public ShipController targetShip;
+	public int playerId;
 
 	public GameObject mainCamera;
 
@@ -26,6 +31,50 @@ public class ShipController : MonoBehaviour {
 	// Update is called once per frame	
 	void Update () {
 
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		print("enter");
+		if (collision is BoxCollider2D)
+		{
+			GameObject ship = collision.gameObject;
+			ShipController thisShipController = gameObject.GetComponent<ShipController>();
+			ShipController otherShipController = ship.GetComponent<ShipController>();
+
+			if (otherShipController != null) {
+				targetShip = otherShipController;
+			}
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+
+		print("exit");
+		if (collision is BoxCollider2D)
+		{
+			GameObject ship = collision.gameObject;
+			ShipController thisShipController = gameObject.GetComponent<ShipController>();
+			ShipController otherShipController = ship.GetComponent<ShipController>();
+
+			if (otherShipController != null) {
+				targetShip = null;
+			}
+		}
+	}
+
+	private void handleAttack(ShipController attacker, ShipController defender) {
+		
+		if (attacker.playerId != defender.playerId && !hasAttackedThisTurn && targetShip != null) {
+			defender.health = defender.health - attacker.attackDamage;
+			targetShip = null;
+			hasAttackedThisTurn = true;
+			print(defender.health);
+		}
+		else {
+			print("Attack cannot happen");
+		}
 	}
 
 	void FixedUpdate() {
@@ -51,6 +100,10 @@ public class ShipController : MonoBehaviour {
 			if (moveRange < 0) {
 				moveRange = 0;
 			}
+
+			if (Input.GetKeyDown (KeyCode.K)) {
+				handleAttack(this, targetShip);
+			}
 		}
 
 		gameObject.transform.Find("CombatOverlay").GetComponent<Canvas>().enabled = overlayEnabled;
@@ -68,7 +121,7 @@ public class ShipController : MonoBehaviour {
 
 	void DisableOverlays() {
 		overlayEnabled = false;
-		gameObject.GetComponent<ShrinkingCircle>().toggleVisibility();
+		gameObject.GetComponent<ShrinkingCircle>().disableVisibility();
 	}
 
 	public void ResetRange() {

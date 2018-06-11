@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public List<ShipController> ships;
+	public int playerId;
 	public int money;
 	public int points;
 
@@ -22,7 +23,9 @@ public class Player : MonoBehaviour {
 	void AddShip (float x, float y) {
 		GameObject instance = Instantiate (GameManager.instance.shipTypes[0], new Vector3 (x, y, 0f), Quaternion.identity);
 		instance.transform.SetParent (this.transform);
-		ships.Add (instance.GetComponent<ShipController>());
+		ShipController sCtrl = instance.GetComponent<ShipController>();
+		sCtrl.playerId = playerId;
+		ships.Add (sCtrl);
 	}
 
 	// Update is called once per frame
@@ -46,7 +49,9 @@ public class Player : MonoBehaviour {
 			GameObject instance = Instantiate (GameManager.instance.shipTypes [i], new Vector3 (startX, position.y, 0f), Quaternion.identity);
 			instance.transform.Rotate (0f, 0f, direction);
 			instance.transform.SetParent (this.transform);
-			ships.Add (instance.GetComponent<ShipController> ());
+			ShipController sCtrl = instance.GetComponent<ShipController>();
+			sCtrl.playerId = playerId;
+			ships.Add(sCtrl);
 			startX += 3.0f;
 		}
 	}
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour {
 	public void EndTurn() {
 		foreach (ShipController ship in ships) {
 			ship.ResetRange ();
+			ship.hasAttackedThisTurn = false;
 		}
 	}
 }

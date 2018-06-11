@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < numPlayers; i++) {
 			GameObject temp = Instantiate (player, positions[i], Quaternion.identity);
 			Player newPlayer = temp.GetComponent<Player> ();
+
+			newPlayer.playerId = i;
 			players.Add (newPlayer);
 		}
 	}
@@ -90,8 +92,9 @@ public class GameManager : MonoBehaviour
 		}
 
 		playerText.text = "Player " + (activePlayer + 1) +
-		"\n\tMoney: " + players [activePlayer].money +
-		"\n\tPoints: " + players [activePlayer].points +
+		"\n\tMoney: " + players[activePlayer].money +
+		"\n\tPoints: " + players[activePlayer].points +
+			"\n\tCurrent Ship Health: " + players[activePlayer].ships[activeShip].health +
 		"\n\tShips: " + players [activePlayer].ships.Count;
 		moveText.text = "Movement Left: " + activeShipCtrl.moveRange.ToString();
 	}
